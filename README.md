@@ -6,9 +6,9 @@ Instead of keeping travel experiences in long-form notes, users can organize tri
 
 ## Live Demo
 
-**Frontend:** `https://travel-log-aytx.vercel.app`
-**Backend API:** `https://travel-log-ym0g.onrender.com`
-**API Documentation:** `https://travel-log-ym0g.onrender.com/docs`
+**Frontend:** `https://travel-log-aytx.vercel.app`  
+**Backend API:** `https://travel-log-ym0g.onrender.com`  
+**API Documentation:** `https://travel-log-ym0g.onrender.com/docs`  
 
 > The backend is hosted on a free-tier service and may require a short cold start after a period of inactivity.
 
