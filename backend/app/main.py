@@ -614,7 +614,7 @@ def get_expense_breakdown(trip_id: int, db: Session = Depends(get_db)):
 
         total_cost += total_value
 
-        categories.append(ExpenseCategoryItem(category=category_name, total=total_cost))
+        categories.append(ExpenseCategoryItem(category=category_name, total=total_value))
 
     return ExpenseBreakdownResponse(
         trip_id=trip_id, total_cost=total_cost, categories=categories
@@ -901,13 +901,22 @@ def search_city_trips(
         cleaned_q = q.strip()
         if cleaned_q:
             pattern = f"%{cleaned_q}%"
+            matching_trip_ids = (
+                select(Visit.trip_id)
+                .join(Place, Place.id == Visit.place_id)
+                .where(
+                    or_(
+                        Place.name.ilike(pattern),
+                        Place.category.ilike(pattern),
+                    )
+                )
+            )
             statement = (
                 statement.where(
                     or_(
                         Trip.title.ilike(pattern),
                         Trip.description.ilike(pattern),
-                        Place.name.ilike(pattern),
-                        Place.category.ilike(pattern)
+                        Trip.id.in_(matching_trip_ids),
                     )
                 )
             )
