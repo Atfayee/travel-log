@@ -161,6 +161,8 @@ export default function TripForm({
         CreateTripInput = {
         city_id: cityId,
 
+        cover_image_url: null,
+
         title:
           title.trim(),
 
